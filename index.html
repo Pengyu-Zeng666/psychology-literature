@@ -1,0 +1,154 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<title>心理學文獻整理 · Psychology Literature</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="可瀏覽、可搜尋的心理學文獻整理網站。">
+<style>
+:root{
+  --bg:#f7f8f9; --surface:#ffffff; --ink:#1a1f26; --muted:#5c6672;
+  --line:#e3e7ec; --accent:#3b6ea5; --accent-ink:#2b527a; --accent-soft:#eaf1f8;
+  --chip:#eef1f4; --chip-ink:#3a4552; --shadow:0 1px 3px rgba(20,30,45,.07);
+  --sans:-apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans TC","PingFang TC","Microsoft JhengHei",Helvetica,Arial,sans-serif;
+}
+@media (prefers-color-scheme: dark){
+  :root{
+    --bg:#0f1317; --surface:#171c22; --ink:#e7ecf1; --muted:#9aa5b1;
+    --line:#28303a; --accent:#6ea3d8; --accent-ink:#9cc2e6; --accent-soft:#1c2a38;
+    --chip:#222a33; --chip-ink:#b7c2ce; --shadow:0 1px 3px rgba(0,0,0,.35);
+  }
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);line-height:1.6;-webkit-font-smoothing:antialiased}
+a{color:var(--accent-ink);text-decoration:none}
+a:hover{text-decoration:underline;text-underline-offset:2px}
+.wrap{max-width:880px;margin:0 auto;padding:0 20px}
+
+header{background:var(--surface);border-bottom:1px solid var(--line);box-shadow:var(--shadow)}
+header .wrap{padding:28px 20px 22px}
+h1{margin:0;font-size:24px;letter-spacing:-.3px}
+.sub{margin:6px 0 0;color:var(--muted);font-size:14px}
+
+.controls{position:sticky;top:0;z-index:20;background:var(--bg);padding:16px 0 8px;border-bottom:1px solid var(--line)}
+#search{width:100%;padding:12px 14px;font-size:15px;border:1px solid var(--line);border-radius:10px;background:var(--surface);color:var(--ink);outline:none}
+#search:focus{border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-soft)}
+.filters{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+.chip{padding:6px 12px;font-size:13px;border:1px solid var(--line);border-radius:999px;background:var(--surface);color:var(--chip-ink);cursor:pointer;user-select:none}
+.chip:hover{border-color:var(--accent)}
+.chip.active{background:var(--accent);border-color:var(--accent);color:#fff}
+.count{color:var(--muted);font-size:13px;margin:14px 0 4px}
+
+.card{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:18px 20px;margin:12px 0;box-shadow:var(--shadow)}
+.card h2{margin:0 0 4px;font-size:17px;line-height:1.4}
+.meta{color:var(--muted);font-size:13.5px;margin:2px 0 10px}
+.meta .yr{color:var(--accent-ink);font-weight:600}
+.summary{font-size:14.5px;margin:0 0 12px;white-space:pre-line}
+.tags{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:2px}
+.tag{font-size:12px;padding:3px 9px;border-radius:6px;background:var(--chip);color:var(--chip-ink)}
+.links{margin-top:12px;display:flex;gap:10px;flex-wrap:wrap}
+.btn{font-size:13px;padding:6px 12px;border-radius:8px;border:1px solid var(--accent);color:var(--accent-ink);background:transparent}
+.btn:hover{background:var(--accent-soft);text-decoration:none}
+.empty{text-align:center;color:var(--muted);padding:48px 0;font-size:15px}
+footer{color:var(--muted);font-size:13px;text-align:center;padding:32px 0}
+mark{background:var(--accent-soft);color:inherit;padding:0 1px;border-radius:2px}
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap">
+    <h1>心理學文獻整理</h1>
+    <p class="sub">Psychology Literature · 可搜尋標題、作者、關鍵字與摘要</p>
+  </div>
+</header>
+
+<main class="wrap">
+  <div class="controls">
+    <input id="search" type="search" placeholder="搜尋…（標題 / 作者 / 標籤 / 摘要）" autocomplete="off">
+    <div class="filters" id="filters"></div>
+  </div>
+  <div class="count" id="count"></div>
+  <div id="list"></div>
+</main>
+
+<footer>
+  <div class="wrap">共 <span id="total">0</span> 篇文獻 · 資料維護於 <code>data.js</code></div>
+</footer>
+
+<script src="data.js"></script>
+<script>
+(function(){
+  var data = (window.LITERATURE || []).slice();
+  var listEl = document.getElementById('list');
+  var countEl = document.getElementById('count');
+  var filtersEl = document.getElementById('filters');
+  var searchEl = document.getElementById('search');
+  document.getElementById('total').textContent = data.length;
+
+  var activeTopic = 'all';
+  var query = '';
+
+  // 建立主題分類 chips
+  var topics = ['all'].concat(
+    Array.from(new Set(data.map(function(d){ return d.topic; }).filter(Boolean))).sort()
+  );
+  topics.forEach(function(t){
+    var c = document.createElement('span');
+    c.className = 'chip' + (t === 'all' ? ' active' : '');
+    c.textContent = t === 'all' ? '全部' : t;
+    c.dataset.topic = t;
+    c.onclick = function(){
+      activeTopic = t;
+      Array.prototype.forEach.call(filtersEl.children, function(ch){ ch.classList.remove('active'); });
+      c.classList.add('active');
+      render();
+    };
+    filtersEl.appendChild(c);
+  });
+
+  function esc(s){ return String(s == null ? '' : s).replace(/[&<>"]/g, function(m){
+    return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[m]; }); }
+
+  function highlight(text){
+    text = esc(text);
+    if(!query) return text;
+    var q = query.replace(/[.*+?^${}()|[\]\\]/g,'\\$&');
+    return text.replace(new RegExp('('+q+')','ig'), '<mark>$1</mark>');
+  }
+
+  function matches(d){
+    if(activeTopic !== 'all' && d.topic !== activeTopic) return false;
+    if(!query) return true;
+    var hay = [d.title, d.authors, d.journal, d.summary, (d.tags||[]).join(' ')].join(' ').toLowerCase();
+    return hay.indexOf(query.toLowerCase()) !== -1;
+  }
+
+  function render(){
+    var rows = data.filter(matches).sort(function(a,b){ return (b.year||0)-(a.year||0); });
+    countEl.textContent = rows.length + ' 筆結果';
+    if(!rows.length){
+      listEl.innerHTML = '<div class="empty">找不到符合的文獻。</div>';
+      return;
+    }
+    listEl.innerHTML = rows.map(function(d){
+      var links = '';
+      if(d.link) links += '<a class="btn" href="'+esc(d.link)+'" target="_blank" rel="noopener">原文連結 ↗</a>';
+      if(d.pdf) links += '<a class="btn" href="'+esc(d.pdf)+'" target="_blank" rel="noopener">PDF</a>';
+      var tags = (d.tags||[]).map(function(t){ return '<span class="tag">'+esc(t)+'</span>'; }).join('');
+      var meta = [d.authors, d.journal].filter(Boolean).map(esc).join(' · ');
+      return '<article class="card">'
+        + '<h2>'+highlight(d.title)+'</h2>'
+        + '<div class="meta"><span class="yr">'+esc(d.year||'')+'</span> · '+highlight([d.authors,d.journal].filter(Boolean).join(' · '))+'</div>'
+        + (d.summary ? '<p class="summary">'+highlight(d.summary)+'</p>' : '')
+        + (tags ? '<div class="tags">'+tags+'</div>' : '')
+        + (links ? '<div class="links">'+links+'</div>' : '')
+        + '</article>';
+    }).join('');
+  }
+
+  searchEl.addEventListener('input', function(){ query = searchEl.value.trim(); render(); });
+  render();
+})();
+</script>
+</body>
+</html>
