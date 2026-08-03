@@ -232,6 +232,198 @@ const LITERATURE = [
     link: "https://doi.org/10.1038/s41467-025-63640-7",
     pdf: "",
   },
+
+  /* ---------------------------------------------------------------
+   * AI × 神經科學：奠基經典
+   * 注意：本區塊不受「IF > 10」條件限制。多數為 1940–2000 年代的
+   * 奠基之作，當年沒有 IF 制度，或發表於 IF 偏低但領域內必讀的期刊
+   * (如 J Physiol、PLoS Comput Biol)。每筆的 journal 欄位已標註 IF 狀態。
+   * ------------------------------------------------------------- */
+
+  {
+    title: "Pyramidal neuron as two-layer neural network",
+    authors: "Poirazi, P., Brannon, T., & Mel, B. W.",
+    year: 2003,
+    journal: "Neuron, 37(6), 989–999（IF ≈ 15）",
+    topic: "AI×神經科學經典",
+    tags: ["dendrite", "single-neuron-computation", "two-layer", "classic", "IF>10"],
+    summary:
+      "Beniaguev (2021) 的直接前身，也是「一顆神經元等於幾層網路」這條研究線的起點。\n" +
+      "用海馬迴 CA1 錐體細胞的詳細分室模型，發現其放電率可以用一個簡單公式預測：把細胞的物理結構對應到一個「兩層」抽象神經網路——末端樹突各自是獨立的 sigmoid 次單元 (subunit)，再由胞體加總。\n" +
+      "首次把生物神經元明確翻譯成人工網路的語言。",
+    link: "https://doi.org/10.1016/S0896-6273(03)00149-1",
+    pdf: "",
+  },
+  {
+    title: "Computational subunits in thin dendrites of pyramidal cells",
+    authors: "Polsky, A., Mel, B. W., & Schiller, J.",
+    year: 2004,
+    journal: "Nature Neuroscience, 7(6), 621–627（IF ≈ 21）",
+    topic: "AI×神經科學經典",
+    tags: ["dendrite", "subunit", "electrophysiology", "classic", "IF>10"],
+    summary:
+      "Poirazi (2003) 的實驗驗證：用雙光子影像加上多點局部施藥，證實同一條細樹突內的輸入會 sigmoid 式加總，不同樹突之間則近似線性相加。\n" +
+      "即「樹突 = 獨立運算次單元」的直接生理證據，把兩層模型從模擬推到實測。",
+    link: "https://doi.org/10.1038/nn1253",
+    pdf: "",
+  },
+  {
+    title: "Dendritic computation",
+    authors: "London, M., & Häusser, M.",
+    year: 2005,
+    journal: "Annual Review of Neuroscience, 28, 503–532（IF ≈ 12）",
+    topic: "AI×神經科學經典",
+    tags: ["review", "dendrite", "single-neuron-computation", "classic", "IF>10"],
+    summary:
+      "樹突運算的標準回顧文獻，引用數極高。系統整理樹突能執行哪些運算：方向選擇性、重合偵測、邏輯運算、增益調控等，並討論「單一神經元究竟該視為一個點還是一個網路」。\n" +
+      "要論證「人工神經元把生物神經元簡化過頭」時，這篇是最常被引用的依據。",
+    link: "https://doi.org/10.1146/annurev.neuro.28.061604.135703",
+    pdf: "",
+  },
+  {
+    title: "A logical calculus of the ideas immanent in nervous activity",
+    authors: "McCulloch, W. S., & Pitts, W.",
+    year: 1943,
+    journal: "Bulletin of Mathematical Biophysics, 5, 115–133（經典，早於 IF 制度）",
+    topic: "AI×神經科學經典",
+    tags: ["artificial-neuron", "foundational", "logic", "classic"],
+    summary:
+      "人工神經元的誕生。把神經元抽象成「全有全無」的二值邏輯閘：加權輸入超過閾值就發放。並證明這種單元組成的網路可以計算任何命題邏輯函數。\n" +
+      "整個類神經網路領域的第一篇論文——今天 ANN 中「加權和 + 閾值」的形式就是從這裡來的，也是所有「AI 神經元 vs. 真實神經元」對比的原點。",
+    link: "https://doi.org/10.1007/BF02478259",
+    pdf: "",
+  },
+  {
+    title: "The perceptron: A probabilistic model for information storage and organization in the brain",
+    authors: "Rosenblatt, F.",
+    year: 1958,
+    journal: "Psychological Review, 65(6), 386–408（IF ≈ 18）",
+    topic: "AI×神經科學經典",
+    tags: ["perceptron", "learning-rule", "foundational", "classic", "IF>10"],
+    summary:
+      "感知器 (perceptron) 原始論文——而且就發表在心理學旗艦期刊 Psychological Review，是心理學與 AI 交會的歷史證據。\n" +
+      "在 McCulloch-Pitts 神經元上加入「可學習的權重」與收斂的學習規則，主張大腦的資訊儲存是機率式、分散式的。\n" +
+      "其局限（無法解 XOR）後來被 Minsky & Papert (1969) 指出，而 Gidon et al. (2020) 證明人類單一神經元反而做得到——形成跨越 60 年的對照。",
+    link: "https://doi.org/10.1037/h0042519",
+    pdf: "",
+  },
+  {
+    title: "Receptive fields, binocular interaction and functional architecture in the cat's visual cortex",
+    authors: "Hubel, D. H., & Wiesel, T. N.",
+    year: 1962,
+    journal: "The Journal of Physiology, 160(1), 106–154（IF < 10，1981 諾貝爾生醫獎）",
+    topic: "AI×神經科學經典",
+    tags: ["visual-cortex", "receptive-field", "simple-complex-cells", "foundational", "classic"],
+    summary:
+      "發現貓初級視覺皮質的簡單細胞 (simple cell) 與複雜細胞 (complex cell)：簡單細胞對特定方位的線段反應，複雜細胞則對位置有一定容忍度。\n" +
+      "這個「特徵偵測 → 位置不變性」的階層結構，直接啟發 Fukushima 的 Neocognitron，再演變成今天 CNN 的「卷積層 + 池化層」。是生物發現形塑 AI 架構最明確的一條線。",
+    link: "https://doi.org/10.1113/jphysiol.1962.sp006837",
+    pdf: "",
+  },
+  {
+    title: "Neocognitron: A self-organizing neural network model for a mechanism of pattern recognition unaffected by shift in position",
+    authors: "Fukushima, K.",
+    year: 1980,
+    journal: "Biological Cybernetics, 36, 193–202（IF < 10）",
+    topic: "AI×神經科學經典",
+    tags: ["CNN", "neocognitron", "architecture", "classic"],
+    summary:
+      "把 Hubel & Wiesel 的簡單／複雜細胞直接實作成人工網路：S-cell 對應簡單細胞做特徵偵測，C-cell 對應複雜細胞做位置容忍。\n" +
+      "這就是卷積神經網路的原型，比 LeCun 的 LeNet 早了近十年。研究 AI 與大腦的關係時，這是「神經科學啟發 AI」最乾淨的案例。",
+    link: "https://doi.org/10.1007/BF00344251",
+    pdf: "",
+  },
+  {
+    title: "Neural networks and physical systems with emergent collective computational abilities",
+    authors: "Hopfield, J. J.",
+    year: 1982,
+    journal: "PNAS, 79(8), 2554–2558（IF ≈ 9，2024 諾貝爾物理獎）",
+    topic: "AI×神經科學經典",
+    tags: ["hopfield-network", "associative-memory", "attractor", "classic"],
+    summary:
+      "Hopfield 網路：用物理學的能量地形觀點，說明簡單神經元互連後如何湧現出「聯想記憶」——從不完整的線索收斂到完整記憶模式（吸引子）。\n" +
+      "把記憶視為動力系統的吸引子，這個觀念同時影響了神經科學（吸引子網路模型）與 AI。2024 年 Hopfield 與 Hinton 因此獲諾貝爾物理獎。",
+    link: "https://doi.org/10.1073/pnas.79.8.2554",
+    pdf: "",
+  },
+  {
+    title: "Learning representations by back-propagating errors",
+    authors: "Rumelhart, D. E., Hinton, G. E., & Williams, R. J.",
+    year: 1986,
+    journal: "Nature, 323, 533–536（IF ≈ 50）",
+    topic: "AI×神經科學經典",
+    tags: ["backpropagation", "learning-rule", "hidden-layer", "classic", "IF>10"],
+    summary:
+      "反向傳播演算法的經典論文，讓多層網路的隱藏層能學到有用的內部表徵，突破了 Minsky & Papert 的批評。\n" +
+      "同時也是 AI 與大腦最大的分歧點：backprop 需要權重對稱與全域誤差訊號，生物上難以實現。這正是 Lillicrap et al. (2020) 那篇 Nature Reviews Neuroscience 要處理的問題。",
+    link: "https://doi.org/10.1038/323533a0",
+    pdf: "",
+  },
+  {
+    title: "Emergence of simple-cell receptive field properties by learning a sparse code for natural images",
+    authors: "Olshausen, B. A., & Field, D. J.",
+    year: 1996,
+    journal: "Nature, 381, 607–609（IF ≈ 50）",
+    topic: "AI×神經科學經典",
+    tags: ["sparse-coding", "unsupervised-learning", "V1", "efficient-coding", "classic", "IF>10"],
+    summary:
+      "只給演算法一個目標——用稀疏的方式重建自然影像——完全不給任何神經資料，結果自動長出與 V1 簡單細胞幾乎一樣的感受野（局部、帶方位、帶頻率選擇性）。\n" +
+      "首次證明大腦的神經特性可以從「對自然環境統計結構的最佳化」推導出來，是 Yamins & DiCarlo「目標驅動模型」路線的思想源頭。",
+    link: "https://doi.org/10.1038/381607a0",
+    pdf: "",
+  },
+  {
+    title: "Performance-optimized hierarchical models predict neural responses in higher visual cortex",
+    authors: "Yamins, D. L. K., Hong, H., Cadieu, C. F., Solomon, E. A., Seibert, D., & DiCarlo, J. J.",
+    year: 2014,
+    journal: "PNAS, 111(23), 8619–8624（IF ≈ 9）",
+    topic: "AI×神經科學經典",
+    tags: ["CNN", "IT-cortex", "V4", "goal-driven", "encoding-model", "classic"],
+    summary:
+      "現代「深度網路 vs. 大腦」對比的奠基實證研究。訓練一個在物體辨識上達到人類水準的階層網路，完全不用神經資料做約束，卻能高度預測猴子 V4 與 IT 皮質的神經反應——且模型的辨識效能愈好，對神經反應的預測就愈準。\n" +
+      "確立了核心論點：任務效能與腦相似度會一起提升。IF 略低於 10，但這條線上不可能略過的一篇。",
+    link: "https://doi.org/10.1073/pnas.1403112111",
+    pdf: "",
+  },
+  {
+    title: "Deep supervised, but not unsupervised, models may explain IT cortical representation",
+    authors: "Khaligh-Razavi, S.-M., & Kriegeskorte, N.",
+    year: 2014,
+    journal: "PLoS Computational Biology, 10(11), e1003915（IF < 10）",
+    topic: "AI×神經科學經典",
+    tags: ["RSA", "IT-cortex", "model-comparison", "benchmark", "classic"],
+    summary:
+      "與 Yamins (2014) 同年、互為印證的另一條路線：用表徵相似性分析 (RSA) 一次比較 37 個模型對 IT 皮質表徵幾何的解釋力。\n" +
+      "結論是只有以百萬張標註影像做監督式訓練的深度網路最接近大腦；其他模型都抓不到大腦顯著的「有生命／無生命」與「臉／非臉」區分。是模型–大腦比較的方法學範本。",
+    link: "https://doi.org/10.1371/journal.pcbi.1003915",
+    pdf: "",
+  },
+  {
+    title: "Representational similarity analysis – connecting the branches of systems neuroscience",
+    authors: "Kriegeskorte, N., Mur, M., & Bandettini, P.",
+    year: 2008,
+    journal: "Frontiers in Systems Neuroscience, 2, 4（IF < 10）",
+    topic: "AI×神經科學經典",
+    tags: ["RSA", "methodology", "brain-model-comparison", "classic"],
+    summary:
+      "提出表徵相似性分析 (RSA) 方法：不直接比對模型單元與神經元（兩者根本無法一一對應），而是比較「刺激兩兩之間的相似性結構」。\n" +
+      "這解決了 AI 與大腦對比最根本的技術障礙，讓 fMRI、單細胞紀錄與網路模型能放在同一個空間比較。IF 低，但幾乎所有相關研究都會用到，方法學必讀。",
+    link: "https://doi.org/10.3389/neuro.06.004.2008",
+    pdf: "",
+  },
+  {
+    title: "Deep learning",
+    authors: "LeCun, Y., Bengio, Y., & Hinton, G.",
+    year: 2015,
+    journal: "Nature, 521, 436–444（IF ≈ 50）",
+    topic: "AI×神經科學經典",
+    tags: ["review", "deep-learning", "foundational", "classic", "IF>10"],
+    summary:
+      "三位圖靈獎得主合寫的深度學習權威回顧。說明多層表徵學習的原理、CNN 與 RNN 的運作，以及與大腦的關聯與差距。\n" +
+      "適合當作跨領域讀者的技術背景補充——寫給神經科學或心理學讀者的方法段落時，這是標準引用來源。",
+    link: "https://doi.org/10.1038/nature14539",
+    pdf: "",
+  },
 ];
 
 // 供 index.html 讀取 / expose to the page
