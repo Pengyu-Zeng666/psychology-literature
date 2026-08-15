@@ -67,6 +67,18 @@ const LITERATURE = [
     pdf: "",
   },
   {
+    title: "The Role of Self-compassion in Romantic Relationships",
+    authors: "Neff, K. D., & Beretvas, S. N.",
+    year: 2013,
+    journal: "Self and Identity, 12(1), 78–98",
+    topic: "人際與親密關係",
+    tags: ["self-compassion", "romantic-relationships", "dyadic-data", "self-esteem", "attachment"],
+    summary:
+      "問題：對自己慈悲會不會讓人變得自我中心、忽略伴侶？並比較自我疼惜 vs. 自尊 vs. 依附風格，何者更能預測關係中的實際行為。\n\n方法：104 對伴侶（交往平均約 4 年）。關鍵設計是配對資料——本人自陳自我疼惜（Self-Compassion Scale, 26 題），而「在關係中的行為表現」由伴侶評定，藉此避開共同方法變異。另測關係滿意度與關係中的真實感／表達意見，並納入 Rosenberg 自尊與成人依附作為比較變項；也請伴侶反過來評估對方的自我疼惜程度。分析看的是增值效度：控制自尊與依附後，自我疼惜是否仍能獨立預測伴侶回報的行為。\n\n結果：自我疼惜高者被伴侶描述為更能情感連結、接納、支持自主，且較少疏離、控制與言語／肢體攻擊；其預測力優於自尊與依附風格。伴侶對其自我疼惜程度的評估與自陳相符，顯示這是可被觀察的特質。\n\n限制：橫斷面相關研究，非因果；以自陳量表為主；美國社區伴侶樣本，跨文化外推需保守。",
+    link: "https://doi.org/10.1080/15298868.2011.639548",
+    pdf: "",
+  },
+  {
     title: "Flow: The Psychology of Optimal Experience",
     authors: "Csikszentmihalyi, M.",
     year: 1990,
